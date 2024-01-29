@@ -31,7 +31,6 @@ services:
     restart: unless-stopped
     volumes:
       - redis:/data
-
   db:
     env_file: docker/.env-non-dev
     image: postgres:15
@@ -99,3 +98,8 @@ volumes:
     external: false
   redis:
     external: false
+
+networks:
+  default:
+    name: proxy
+    external: true
