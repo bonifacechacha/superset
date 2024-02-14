@@ -41,6 +41,31 @@ EXAMPLES_HOST = os.getenv("EXAMPLES_HOST")
 EXAMPLES_PORT = os.getenv("EXAMPLES_PORT")
 EXAMPLES_DB = os.getenv("EXAMPLES_DB")
 
+# Added during testing embedding dasboards
+SESSION_COOKIE_SAMESITE = None
+ENABLE_PROXY_FIX = True
+PUBLIC_ROLE_LIKE_GAMMA = True
+
+
+CORS_OPTIONS = {
+  'supports_credentials': True,
+  'allow_headers': ['*'],
+  'resources':['*'],
+  'origins': ['http://localhost:8088', 'http://localhost:8888','http://elmisdashboard.mohz.go.tz','https://elmisdashboard.mohz.go.tz','https://elmistesting.mohz.go.tz:8088','http://elmistesting.mohz.go.tz:8088']
+}
+
+TALISMAN_ENABLED = False
+ENABLE_CORS = True
+HTTP_HEADERS={"X-Frame-Options":"ALLOWALL"}
+
+SESSION_COOKIE_SAMESITE = None
+SESSION_COOKIE_SECURE = False 
+SESSION_COOKIE_HTTPONLY = False
+WTF_CSRF_ENABLED = False
+CSRF_ENABLED = False
+
+GUEST_ROLE_NAME = "Gamma"
+
 # The SQLAlchemy connection string.
 SQLALCHEMY_DATABASE_URI = (
     f"{DATABASE_DIALECT}://"
@@ -92,7 +117,11 @@ class CeleryConfig:
 
 CELERY_CONFIG = CeleryConfig
 
-FEATURE_FLAGS = {"ALERT_REPORTS": True}
+FEATURE_FLAGS = {
+    "EMBEDDED_SUPERSET": True,
+    "ALERT_REPORTS": True
+}
+
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = True
 WEBDRIVER_BASEURL = "http://superset:8088/"
 # The base URL for the email report hyperlinks.
